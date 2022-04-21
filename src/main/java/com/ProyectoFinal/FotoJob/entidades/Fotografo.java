@@ -22,8 +22,9 @@ public class Fotografo {
     private String especializacion;
     private Boolean alta;
     private Double tarifaBase;
+    private String galeria;
 
-    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Double tarifaBase) {
+    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Double tarifaBase, String galeria) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -33,6 +34,7 @@ public class Fotografo {
         this.especializacion = especializacion;
         this.alta = alta;
         this.tarifaBase = tarifaBase;
+        this.galeria = galeria;
         
     }
 
@@ -118,6 +120,14 @@ public class Fotografo {
 
     public void setTarifaBase(Double tarifaBase) {
         this.tarifaBase = tarifaBase;
+    }
+
+    public String getGaleria() {
+        return galeria;
+    }
+
+    public void setGaleria(String galeria) {
+        this.galeria = galeria;
     }
 
 }
