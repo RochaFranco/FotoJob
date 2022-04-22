@@ -1,5 +1,6 @@
 package com.ProyectoFinal.FotoJob.entidades;
 
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
