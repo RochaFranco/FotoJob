@@ -1,5 +1,6 @@
 package com.ProyectoFinal.FotoJob.entidades;
 
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,13 +19,13 @@ public class Fotografo {
     private String mail;
     private String contrasenia;
     private Integer telefono;
-    private Integer valoraciones;
-    private String especializacion;
+    private Integer valoraciones;  // atributo que da promedio de valoracion con estrellas
+    private String especializacion; // categoria de fotografia en la que se especializa
     private Boolean alta;
-    private Double tarifaBase;
-    private String galeria;
-
-    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Double tarifaBase, String galeria) {
+    private Integer precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
+    private ArrayList<String> galeria; // un array de Strings para guardar las fotos (cada string es una foto)
+    
+    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio, ArrayList<String> galeria) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -33,7 +34,7 @@ public class Fotografo {
         this.valoraciones = valoraciones;
         this.especializacion = especializacion;
         this.alta = alta;
-        this.tarifaBase = tarifaBase;
+        this.precio = precio;
         this.galeria = galeria;
         
     }
@@ -114,20 +115,23 @@ public class Fotografo {
         this.id = id;
     }
 
-    public Double getTarifaBase() {
-        return tarifaBase;
+
+    public Integer getPrecio() {
+        return precio;
     }
 
-    public void setTarifaBase(Double tarifaBase) {
-        this.tarifaBase = tarifaBase;
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
     }
 
-    public String getGaleria() {
+    public ArrayList<String> getGaleria() {
         return galeria;
     }
 
-    public void setGaleria(String galeria) {
+    public void setGaleria(ArrayList<String> galeria) {
         this.galeria = galeria;
     }
+
+
 
 }
