@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleeaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@
             <!--Este sube la imagen al FireBase-->
             <button type="button" id="uploadbtn" class="btn btn-secondary disabled">Subir Imagen</button>
             <!--Este llama al controlador que le agrega el link al array del fotografo-->
-            <form action="">
+            <form th:action="" method="POST">
                 <p id="imageurlFB" name="imageUrl" hidden></p>
                 <button type="submit" id="postbtn" class="btn btn-success hidden">Postear</button>
             </form>
