@@ -1,4 +1,4 @@
-
+package com.ProyectoFinal.FotoJob.servicios;
 import com.ProyectoFinal.FotoJob.entidades.Fotografo;
 import com.ProyectoFinal.FotoJob.repositorios.fotografoRepositorio;
 import java.util.ArrayList;
@@ -13,27 +13,27 @@ import java.util.Optional;
 public class FotografoServicio {
     
     @Autowired
-    private fotografoRepositorio fp;
+    private fotografoRepositorio fr;
     
     @Transactional
-    public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria) throws Exception{
+    public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
         
-        validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria);
+        validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
         
-        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria);
+        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
         
-        return fp.save(fotografo);
+        return fr.save(fotografo);
     }
     
     @Transactional
-    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria) throws Exception {
-        Optional<Fotografo> respuesta = fp.findById(id);
+    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception {
+        Optional<Fotografo> respuesta = fr.findById(id);
         
         if(respuesta.isPresent()){
-            validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria);
+            validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
             Fotografo f = respuesta.get();
             
-            return fp.save(f);       
+            return fr.save(f);       
         }
         else{
             return null;
@@ -43,17 +43,17 @@ public class FotografoServicio {
     
     public List<Fotografo>findAll()
     {
-         return fp.findAll();
+         return fr.findAll();
     }
        
        @Transactional
     public void delete(String id){
-        fp.deleteById(id);
+        fr.deleteById(id);
     }
     
     
     
-    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria) throws Exception
+    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception
     {
         if(nombre == null || nombre.isEmpty()){
             throw new Exception("Nombre invalido");
@@ -68,7 +68,7 @@ public class FotografoServicio {
         }
         
         if(contrasenia == null || contrasenia.isEmpty()){
-            throw new Exception("Contraseña invalida");
+            throw new Exception("Contraseï¿½a invalida");
         }
         
         if(telefono == null){
@@ -95,6 +95,9 @@ public class FotografoServicio {
             throw new Exception("galeria invalida");
         }
  
+        if(miniatura == null || miniatura.isEmpty()){
+            throw new Exception("miniatura invalida");
+        }
     }
     
 }

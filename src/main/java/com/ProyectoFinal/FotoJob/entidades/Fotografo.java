@@ -24,8 +24,9 @@ public class Fotografo {
     private Boolean alta;
     private Integer precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
     private ArrayList<String> galeria; // un array de Strings para guardar las fotos (cada string es una foto)
+    private ArrayList<String> miniatura;
     
-    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio, ArrayList<String> galeria) {
+    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio, ArrayList<String> galeria, ArrayList<String> miniatura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
@@ -36,7 +37,7 @@ public class Fotografo {
         this.alta = alta;
         this.precio = precio;
         this.galeria = galeria;
-        
+        this.miniatura = miniatura;
     }
 
     public Fotografo() {
@@ -130,6 +131,14 @@ public class Fotografo {
 
     public void setGaleria(ArrayList<String> galeria) {
         this.galeria = galeria;
+    }
+
+    public ArrayList<String> getMiniatura() {
+        return miniatura;
+    }
+
+    public void setMiniatura(ArrayList<String> miniatura) {
+        this.miniatura = miniatura;
     }
 
 

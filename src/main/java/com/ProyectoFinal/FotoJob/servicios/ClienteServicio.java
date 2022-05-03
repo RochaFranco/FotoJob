@@ -1,4 +1,4 @@
-
+package com.ProyectoFinal.FotoJob.servicios;
 import com.ProyectoFinal.FotoJob.entidades.Cliente;
 import com.ProyectoFinal.FotoJob.repositorios.clienteRepositorio;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ClienteServicio {
     
-    private clienteRepositorio cp;
+    private clienteRepositorio cr;
     
     @Transactional
     private Cliente save(String nombre, String apellido, String mail, Integer telefono) throws Exception{
@@ -19,20 +19,20 @@ public class ClienteServicio {
         
         Cliente cliente = new Cliente(nombre, apellido, mail, telefono);
         
-        return cp.save(cliente);   
+        return cr.save(cliente);   
     }
     
     @Transactional
     public Cliente edit(String id, String nombre, String apellido, String mail, Integer telefono) throws Exception{
         
-        Optional<Cliente> respuesta = cp.findById(id);
+        Optional<Cliente> respuesta = cr.findById(id);
         
         if(respuesta.isPresent()){
             
             validator(nombre, apellido, mail, telefono);
             Cliente c = respuesta.get();
             
-            return cp.save(c);       
+            return cr.save(c);       
         }
         else{
             return null;
@@ -41,12 +41,12 @@ public class ClienteServicio {
     }
     
         public List<Cliente>findAll(){
-        return cp.findAll();
+        return cr.findAll();
     }
     
     @Transactional
     public void delete(String id){
-        cp.deleteById(id);
+        cr.deleteById(id);
     }
     
     public void validator(String nombre, String apellido, String mail, Integer telefono) throws Exception{
