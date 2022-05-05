@@ -22,26 +22,25 @@ public class Fotografo {
     private Integer valoraciones;  // atributo que da promedio de valoracion con estrellas
     private String especializacion; // categoria de fotografia en la que se especializa
     private Boolean alta;
-    private Integer precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
+    private String precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
     private ArrayList<String> galeria; // un array de Strings para guardar las fotos (cada string es una foto)
     private ArrayList<String> miniatura;
     
-    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio, ArrayList<String> galeria, ArrayList<String> miniatura) {
+    public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion, String precio, ArrayList<String> galeria, ArrayList<String> miniatura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.contrasenia = contrasenia;
         this.telefono = telefono;
-        this.valoraciones = valoraciones;
         this.especializacion = especializacion;
-        this.alta = alta;
+        this.alta = true;
         this.precio = precio;
         this.galeria = galeria;
         this.miniatura = miniatura;
     }
 
     public Fotografo() {
-        this.alta = true;
+       
     }
 
     public String getNombre() {
@@ -117,11 +116,11 @@ public class Fotografo {
     }
 
 
-    public Integer getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Integer precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 

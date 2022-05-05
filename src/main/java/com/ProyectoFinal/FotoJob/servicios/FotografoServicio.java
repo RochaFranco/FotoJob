@@ -16,21 +16,21 @@ public class FotografoServicio {
     private fotografoRepositorio fr;
     
     @Transactional
-    public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
+    public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
         
-        validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
+        validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
         
-        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
+        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
         
         return fr.save(fotografo);
     }
     
     @Transactional
-    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception {
+    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion,String precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception {
         Optional<Fotografo> respuesta = fr.findById(id);
         
         if(respuesta.isPresent()){
-            validator(nombre, apellido, mail, contrasenia, telefono, valoraciones, especializacion, alta, precio, galeria, miniatura);
+            validator(nombre, apellido, mail, contrasenia, telefono, especializacion,precio, galeria, miniatura);
             Fotografo f = respuesta.get();
             
             return fr.save(f);       
@@ -53,7 +53,7 @@ public class FotografoServicio {
     
     
     
-    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion, Boolean alta, Integer precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception
+    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception
     {
         if(nombre == null || nombre.isEmpty()){
             throw new Exception("Nombre invalido");
@@ -75,16 +75,8 @@ public class FotografoServicio {
             throw new Exception("Telefono invalido");
         }
         
-        if(valoraciones == null){
-            throw new Exception("valoracion invalida");
-        }
-        
         if(especializacion == null || especializacion.isEmpty()){
             throw new Exception("esecializacion invalida");
-        }
-        
-        if(alta == null){
-            throw new Exception("alta invalida");
         }
         
         if(precio == null || nombre.isEmpty()){
