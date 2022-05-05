@@ -18,7 +18,7 @@ public class FotografoServicio {
     @Transactional
     public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
         
-        validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
+        validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio);
         
         Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
         
@@ -30,7 +30,7 @@ public class FotografoServicio {
         Optional<Fotografo> respuesta = fr.findById(id);
         
         if(respuesta.isPresent()){
-            validator(nombre, apellido, mail, contrasenia, telefono, especializacion,precio, galeria, miniatura);
+            validator(nombre, apellido, mail, contrasenia, telefono, especializacion,precio);
             Fotografo f = respuesta.get();
             
             return fr.save(f);       
@@ -53,7 +53,7 @@ public class FotografoServicio {
     
     
     
-    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception
+    public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio) throws Exception
     {
         if(nombre == null || nombre.isEmpty()){
             throw new Exception("Nombre invalido");
@@ -83,13 +83,7 @@ public class FotografoServicio {
             throw new Exception("precio invalido");
         }
         
-        if(galeria == null || galeria.isEmpty()){
-            throw new Exception("galeria invalida");
-        }
- 
-        if(miniatura == null || miniatura.isEmpty()){
-            throw new Exception("miniatura invalida");
-        }
+        
     }
     
 }

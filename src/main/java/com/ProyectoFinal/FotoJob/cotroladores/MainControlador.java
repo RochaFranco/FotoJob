@@ -14,9 +14,5 @@ public class MainControlador {
     
     }
     
-    @GetMapping("/registrarse")
-    public String registrar(){
-    return "registro-fotografo";
-    }
     
 }

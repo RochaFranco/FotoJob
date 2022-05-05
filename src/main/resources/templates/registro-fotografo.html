@@ -44,9 +44,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <div th:if="${error!=null}" style="margin-top: 20px;" class="alert alert-danger" role="alert">
-      Algun dato no es valido
-    </div>
+    <div th:if="${error!=null}" style="margin-top: 20px;" class="alert alert-danger" role="alert" th:text="${error}"></div>
     <div th:if="${exito!=null}" style="margin-top: 20px;" class="alert alert-success" role="alert">
       Cargado con exito
     </div>
