@@ -1,8 +1,9 @@
-.cuerpo{
-
-    background-color: #38393c;
+.cuerpoc{
+    background-image: url("C:\Users\brian\Documents\NetBeansProjects\fotopag\FotoJob\src\main\resources\static\imagenes\fondo-subir.jpg");
+    height: 100%;
 
 }
+
 .contenedor {
     width: 100%;
     margin-top: 0%;
@@ -76,18 +77,27 @@
 .modal-content{
     width: 1200px;
     margin: auto;
-    background-color: rgb(250, 250, 250);
+    background-color: #B1E3F0;
     border-radius: 10px;
     overflow: hidden;
     transform: scale(0.9);
     opacity: 0;
     transition: 400ms 300ms all ease;
 }
+
+.titu{
+    margin-left: 450px;
+    color:#FFC107;
+}
+.postear{
+
+    margin-left: 450px;
+}
 .modal-content .modal-header{
     width: 100%;
     padding: 20px 10px;
     text-align: center;
-    background-color: rgb(249,249,249);
+    background-color:#38393c;
     box-shadow: 0px -2px 7px 1px rgba(0, 0, 0, 0.281);
     font-size: 18px;
 }
@@ -123,7 +133,7 @@
     width: 100%;
     padding: 10px 10px;
     text-align: center;
-    background-color: rgb(249,249,249);
+    background-color: #38393c;
     box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.281);
     font-size: 18px;
     display: flex;
@@ -131,6 +141,7 @@
     justify-content: flex-end;
     gap: 15px;
 }
+
 .modal-footer .btn-foot{
     border: none;
     padding: 12px 70px;
@@ -140,6 +151,20 @@
     color: #fff;
     transition: background-color 300ms ease;
 }
+
+.modal-footer .boton-cut{
+
+    background-color: #FFC107;
+    color: black;
+    border-radius:35px;
+}
+.modal-footer .boton-can{
+
+    background-color: #FFC107;
+    color: black;
+    border-radius:35px;
+}
+
 .modal-footer .primary{
     background-color: var(--primary-color);
 }

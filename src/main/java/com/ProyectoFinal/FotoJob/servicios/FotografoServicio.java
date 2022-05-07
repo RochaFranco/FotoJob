@@ -82,14 +82,7 @@ public class FotografoServicio {
         if(precio == null || nombre.isEmpty()){
             throw new Exception("precio invalido");
         }
-        
-        if(galeria == null || galeria.isEmpty()){
-            throw new Exception("galeria invalida");
-        }
- 
-        if(miniatura == null || miniatura.isEmpty()){
-            throw new Exception("miniatura invalida");
-        }
+       
     }
     
 }

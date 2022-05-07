@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="\estilos\subir-foto.css">
     <title>Subir Foto</title>
 </head>
-<body class="cuerpo">
+<body class="cuerpoc">
+    
     <div class="contenedor">
         <div class="subida">
             <form id="form-img">
@@ -33,7 +34,7 @@
             <form th:action="guardarImagenes" method="POST">
                 <p id="imageurlFB" name="imageUrl" hidden></p>
                 <p id="imageurlFBmin" name="imageUrlMin" hidden></p>
-                <button type="submit" id="postbtn" class="btn btn-success hidden">Postear</button>
+                <button type="submit" id="postbtn" class="postear hidden" >Postear</button>
             </form>
         </div>
     </div>
@@ -41,7 +42,7 @@
 <div class="modal" id="modalW">
     <div class="modal-content" id="modalC">
         <div class="modal-header">
-            <p>Recorta tu foto</p>
+            <h1 class="titu">Recorta tu foto</h1>
         </div>
         <div class="modal-body">
             <div class="content-imagen-cropper">
@@ -52,8 +53,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="" id="cut">Recortar</button>
-            <button class="" id="close">Cancelar</button>
+            <button class="boton-cut" id="cut">Recortar</button>
+            <button class="boton-can" id="close">Cancelar</button>
         </div>
     </div>
 </div>
