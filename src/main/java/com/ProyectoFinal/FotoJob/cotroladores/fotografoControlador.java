@@ -1,5 +1,6 @@
 package com.ProyectoFinal.FotoJob.cotroladores;
 
+import com.ProyectoFinal.FotoJob.entidades.Fotografo;
 import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class fotografoControlador {
     }
     
   
+    
+    
     @PostMapping("/registrarse")
     public String guardarRegistro(ModelMap modelo, @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer telefono, @RequestParam String mail, @RequestParam String contrasenia, @RequestParam String especializacion , @RequestParam String precio) throws Exception{
         ArrayList<String>galeria = new ArrayList();
@@ -45,6 +48,18 @@ public class fotografoControlador {
            return "registro-fotografo";
         }
      
+    }
+    
+    @GetMapping("/inicio")
+    public String mostrarinicio(ModelMap modelo){
+        try {
+            ArrayList<Fotografo> fotografos = (ArrayList<Fotografo>) fotografoServicio.findAll();
+            modelo.put("fotografos", fotografos);
+            return "inicio";
+        } catch (Exception e) {
+            modelo.put("error", "Hubo un error al cargar los fotografos");
+            return "inicio";
+        }
     }
     
 }

@@ -13,6 +13,5 @@ public class MainControlador {
     return "bienvenida";
     
     }
-    
-    
+
 }

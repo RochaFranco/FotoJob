@@ -82,8 +82,7 @@ public class FotografoServicio {
         if(precio == null || nombre.isEmpty()){
             throw new Exception("precio invalido");
         }
-        
-        
+
     }
     
 }

@@ -1,0 +1,46 @@
+
+
+.profile {
+    display: flex;
+    font-size: 2em;
+    height: 5em;
+    justify-content: center;
+    align-items: center;
+}
+
+.muestra {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.barra-acciones {
+    display: flex;
+    margin: 2rem;
+    width: max-content;
+    position: fixed;
+    
+}
+
+.list-group-item-action {
+    user-select: none;
+}
+
+
+.grid-container {
+    width: fit-content;
+    margin-left: 250px ;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 70px;
+    row-gap: 30px;
+}
+
+.hide {
+    display: none
+}
+
+.show {
+    display: block;
+    visibility: visible;
+}
+

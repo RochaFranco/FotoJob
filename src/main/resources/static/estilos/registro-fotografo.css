@@ -1,4 +1,7 @@
+.cuerpo{
+background-color: #38393c;
 
+}
 
 .container {
     width: 100%;
@@ -9,8 +12,23 @@
     justify-content: center ;
 }
 
+.form-label{
+    color: #FFC107;
+}
+.boton{
+font-size: 24px;
+background-color:#B1E3F0;
+color: black;
+border-radius:50px;
+}
 .form {
+    
     width: 700px;
     display: flex;
     justify-content: center;
+}
+
+.desplegables{
+
+    border-radius: 25px;
 }

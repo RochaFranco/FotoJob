@@ -1,7 +1,7 @@
 
-let cat = ["Eventos", "Marketing", "Paisajes", "Retratos"]
+let cat = ["eventos", "moda", "foto-producto", "books" , "boudoir", "pets"]
 let opcionesEsp = document.getElementById("inputEspecialidad")
-let rango = ["$$","$$$","$$$$"]
+let rango = ["barato","medio","caro"]
 let opcionesRango = document.getElementById("inputRangoPrecio")
 
 for (const catg of cat) {
