@@ -16,6 +16,6 @@ public interface fotografoRepositorio extends JpaRepository <Fotografo, String>{
     
    
      
-     @Query("SELECT f FROM Fotografo f WHERE f.fotografo.especializacion= :especializacion")
+     @Query("SELECT f FROM Fotografo f WHERE f.especializacion= :especializacion")
      public List <Fotografo> buscarPorEspecializacion(@Param("especializacion") String especializacion);
 }
