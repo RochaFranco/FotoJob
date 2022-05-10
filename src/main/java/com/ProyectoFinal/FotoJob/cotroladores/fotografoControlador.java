@@ -32,8 +32,6 @@ public class fotografoControlador {
     }
     
   
-    
-    
     @PostMapping("/registrarse")
     public String guardarRegistro(ModelMap modelo, @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer telefono, @RequestParam String mail, @RequestParam String contrasenia, @RequestParam String especializacion , @RequestParam String precio) throws Exception{
         ArrayList<String>galeria = new ArrayList();
