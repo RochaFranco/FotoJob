@@ -16,4 +16,6 @@ public interface fotografoRepositorio extends JpaRepository <Fotografo, String>{
 
      public List <Fotografo> buscarPorEspecializacion(@Param("especializacion") String especializacion);
 
+     @Query("SELECT mail FROM Fotografo f WHERE f.id= :id")
+     public String traerMailPorId (@Param("id") String id);
 }

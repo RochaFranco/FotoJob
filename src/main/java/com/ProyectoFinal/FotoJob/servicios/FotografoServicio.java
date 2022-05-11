@@ -51,7 +51,16 @@ public class FotografoServicio {
         fr.deleteById(id);
     }
     
+    @Transactional
+    public String traerMailPorId(String id){
+     
+     return fr.traerMailPorId(id);
+    }
     
+    @Transactional
+    public void findById(String id){
+    fr.findById(id);
+    }
     
     public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio) throws Exception
     {

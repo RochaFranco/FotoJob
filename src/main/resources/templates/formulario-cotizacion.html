@@ -10,7 +10,7 @@
 </head>
 <body class="cuerpo">
   <div class="container">
-    <form th:action="@{/cliente/cotizar}" method="POST">
+    <form th:action="@{/cotizar}" method="POST">
       <div class="row g-3">
         <div class="col">
           <label for="inputNombre" class="form-label">Nombre</label>
@@ -31,11 +31,11 @@
       </div>
         <label for="inputMensaje" class="form-label">Mensaje</label>
         <br>
-        <textarea class="box" name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+        <textarea class="box" name="mensaje" id="inputMensaje" cols="30" rows="10"></textarea>
         <br>
       <button type="submit" class="boton ">Enviar cotizacion</button>
     </form>
-
+ 
     <div th:if="${error!=null}" style="margin-top: 20px;" class="alert alert-danger" role="alert" th:text="${error}"></div>
     <div th:if="${exito!=null}" style="margin-top: 20px;" class="alert alert-success" role="alert">
       Enviado con exito

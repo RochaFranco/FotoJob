@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleeaf.org">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +41,8 @@
 					<p>Categoria: Eventos </p>
 					<p>Telefono: 011 4444 4444 </p>
 				</div>
+                                
+                                
 				
 				<div class="cont-botones">
 					<div class="btn-contacto-cont">
@@ -50,6 +53,11 @@
 					</div>
 				</div>
 			</div> 
+                    
+                        
+                         <form th:action="@{/cotizar}" class="formulario-cotizacion" >
+                                <button  type="submit" class="btn btn-warning ">Pedir Cotizacion</button>
+                         </form>
 
 			<div class="cont-galeria" id="galeria">
 				<div class="cont-img">
@@ -86,7 +94,7 @@
 	            </div>
         	</section> 
 
-        	<!-- Aca va la caja de comentarios -----
+        	<!-- Aca va la caja de comentarios ----->
         	<div class="cont-caja-coment">
         		<h4>Comentarios</h4>
         		<div class="cont-comentarios">
@@ -115,7 +123,7 @@
         				</div>
         			</div>
         		</div>
-        	</div> -->
+        	</div> 
 
 	    </div> 
 

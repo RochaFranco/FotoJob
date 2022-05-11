@@ -57,7 +57,7 @@ body {
     font-size: 16px;
 }
 
-/*.cont-profilepic{
+.cont-profilepic{
     width: 7rem;
     height: 7rem;
     border-radius: 50%;
@@ -71,7 +71,7 @@ body {
     height: 100%; 
     object-fit: cover; 
   
-}*/
+}
 
 .rating {
     display: flex;

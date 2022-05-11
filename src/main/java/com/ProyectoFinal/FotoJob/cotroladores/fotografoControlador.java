@@ -60,4 +60,10 @@ public class fotografoControlador {
         }
     }
     
+    @GetMapping("/perfil_fotografo")
+    public String mostrarPerfil(){
+    return"perfil_fotografo";
+    }
+    
+    
 }
