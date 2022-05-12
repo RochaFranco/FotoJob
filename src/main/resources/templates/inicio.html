@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleeaf.org">
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,9 +36,13 @@
       <div id="grid-container" class="grid-container">
         
         <div th:each="fotografo : ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
+<<<<<<< HEAD
           <a style="text-decoration: none; color: black" th:href="@{/fotografo/profile/__${fotografo.id}__}">
+=======
+            <a style="text-decoration: none; color: black" href="/fotografo/perfil_fotografo">
+>>>>>>> 2aa17bac9c1189a961e84ec9fd50ae1d34a3bd07
           <div class="card-body">
-              <div class="profile">
+              <div class="profile" >
                 <div th:text="${fotografo.nombre}"></div>
                 &nbsp;
                 <div th:text="${fotografo.apellido}"></div>
@@ -49,10 +53,14 @@
                 <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2F0JTIwZXllfGVufDB8fDB8fA%3D%3D&w=1000&q=80" style="width: 7rem;" alt="trabajo del Fotografo">
               </div>
             </div>
-          </a>
+          </a>    
           </div>
+<<<<<<< HEAD
         
           
+=======
+         
+>>>>>>> 2aa17bac9c1189a961e84ec9fd50ae1d34a3bd07
         
           
       </div>

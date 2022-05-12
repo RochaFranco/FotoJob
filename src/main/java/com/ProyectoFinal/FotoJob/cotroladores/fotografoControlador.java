@@ -26,7 +26,7 @@ public class fotografoControlador {
     
     }
     
-    
+      
     @GetMapping("/registrarse")
     public String registrar(){
     return "registro-fotografo";
@@ -38,7 +38,7 @@ public class fotografoControlador {
         ArrayList<String>galeria = new ArrayList();
         ArrayList<String>miniatura = new ArrayList();
         try {
-          fotografoServicio.save(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
+          fotografoServicio.save(nombre, apellido, mail, contrasenia, telefono,especializacion, precio, galeria, miniatura);
         modelo.put("exito", "registro exitoso");
         return "registro-fotografo";
         
@@ -47,6 +47,11 @@ public class fotografoControlador {
            return "registro-fotografo";
         }
     
+    }
+    
+    @GetMapping("/editar")
+    public String editarPerfil(){
+       return "editar-perfil";
     }
     
     @GetMapping("/inicio")
@@ -61,6 +66,7 @@ public class fotografoControlador {
         }
     }
     
+
     @GetMapping("/profile/{id}")
     public String mostrarperfil(@PathVariable String id, ModelMap modelo){
         try {
@@ -74,3 +80,4 @@ public class fotografoControlador {
     }
     
 }
+

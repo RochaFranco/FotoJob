@@ -32,8 +32,10 @@ public class FotografoServicio implements UserDetailsService{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio);
         
+
         Fotografo fotografo = new Fotografo(nombre, apellido, mail, encoder.encode(contrasenia), telefono, especializacion, precio, galeria, miniatura);
         fotografo.setRole(Role.FOTOGRAFO);
+
         return fr.save(fotografo);
     }
     
@@ -63,7 +65,16 @@ public class FotografoServicio implements UserDetailsService{
         fr.deleteById(id);
     }
     
+    @Transactional
+    public String traerMailPorId(String id){
+     
+     return fr.traerMailPorId(id);
+    }
     
+    @Transactional
+    public void findById(String id){
+    fr.findById(id);
+    }
     
     public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio) throws Exception
     {
