@@ -1,16 +1,27 @@
 package com.ProyectoFinal.FotoJob.servicios;
 import com.ProyectoFinal.FotoJob.entidades.Fotografo;
 import com.ProyectoFinal.FotoJob.repositorios.fotografoRepositorio;
+import enums.Role;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import javax.servlet.http.HttpSession;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Service
-public class FotografoServicio {
+public class FotografoServicio implements UserDetailsService{
     
     @Autowired
     private fotografoRepositorio fr;
@@ -18,10 +29,11 @@ public class FotografoServicio {
     @Transactional
     public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
         
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio);
         
-        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
-        
+        Fotografo fotografo = new Fotografo(nombre, apellido, mail, encoder.encode(contrasenia), telefono, especializacion, precio, galeria, miniatura);
+        fotografo.setRole(Role.FOTOGRAFO);
         return fr.save(fotografo);
     }
     
@@ -83,6 +95,28 @@ public class FotografoServicio {
             throw new Exception("precio invalido");
         }
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Fotografo usuario = fr.findByEmail(email);
+        if (usuario != null) {
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRole());//ROLE_ADMIN O ROLE_FOTOGRAFO o ROLE_CLIENTE
+            permisos.add(p1);
+
+            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+
+            User user = new User(usuario.getMail(), usuario.getContrasenia(), permisos);
+            return user;
+
+        } else {
+            return null;
+        }
     }
     
 }
