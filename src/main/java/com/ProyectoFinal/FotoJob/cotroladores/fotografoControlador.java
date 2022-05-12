@@ -61,7 +61,13 @@ public class fotografoControlador {
     }
     
     @GetMapping("/perfil_fotografo")
-    public String mostrarPerfil(){
+    public String mostrarPerfil(ModelMap modelo){
+        
+        try {
+            
+        } catch ( Exception e) {
+        }
+        
     return"perfil_fotografo";
     }
     

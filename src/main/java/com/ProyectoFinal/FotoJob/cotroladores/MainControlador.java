@@ -25,6 +25,8 @@ public class MainControlador {
     return "inicio";
     }
     
+    
+    
     @Autowired
     private MailServicio mailServicio;
    // @Autowired
