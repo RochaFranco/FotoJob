@@ -25,7 +25,7 @@ public class fotografoControlador {
     
     }
     
-    
+      
     @GetMapping("/registrarse")
     public String registrar(){
     return "registro-fotografo";
@@ -48,6 +48,11 @@ public class fotografoControlador {
      
     }
     
+    @GetMapping("/editar")
+    public String editarPerfil(){
+       return "editar-perfil";
+    }
+    
     @GetMapping("/inicio")
     public String mostrarinicio(ModelMap modelo){
         try {
@@ -63,12 +68,12 @@ public class fotografoControlador {
     @GetMapping("/perfil_fotografo")
     public String mostrarPerfil(ModelMap modelo){
         
-        try {
-            
-        } catch ( Exception e) {
-        }
-        
-    return"perfil_fotografo";
+       try {
+           
+       } catch ( Exception e) {
+      }
+       
+        return"perfil_fotografo";
     }
     
     
