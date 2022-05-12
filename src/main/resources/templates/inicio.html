@@ -36,7 +36,7 @@
       <div id="grid-container" class="grid-container">
         
         <div th:each="fotografo : ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
-          <a style="text-decoration: none; color: black" href="">
+          <a style="text-decoration: none; color: black" th:href="@{/fotografo/profile/__${fotografo.id}__}">
           <div class="card-body">
               <div class="profile">
                 <div th:text="${fotografo.nombre}"></div>
@@ -52,6 +52,7 @@
           </a>
           </div>
         
+          
         
           
       </div>

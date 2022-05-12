@@ -96,6 +96,17 @@ public class FotografoServicio implements UserDetailsService{
         }
 
     }
+    
+    
+    public Fotografo getbyId(String id) {
+        Fotografo f; 
+        try {
+            f = fr.getById(id);
+        } catch (Exception e) {
+            throw e;
+        }
+        return f;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -118,5 +129,7 @@ public class FotografoServicio implements UserDetailsService{
             return null;
         }
     }
+
+    
     
 }
