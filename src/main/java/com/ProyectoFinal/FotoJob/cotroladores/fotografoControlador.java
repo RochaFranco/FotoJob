@@ -37,7 +37,7 @@ public class fotografoControlador {
         ArrayList<String>galeria = new ArrayList();
         ArrayList<String>miniatura = new ArrayList();
         try {
-          fotografoServicio.save(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
+          fotografoServicio.save(nombre, apellido, mail, contrasenia, telefono,especializacion, precio, galeria, miniatura);
         modelo.put("exito", "registro exitoso");
         return "registro-fotografo";
         

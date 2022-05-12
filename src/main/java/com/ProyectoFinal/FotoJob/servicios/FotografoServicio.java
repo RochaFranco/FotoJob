@@ -20,7 +20,7 @@ public class FotografoServicio {
         
         validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio);
         
-        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono, especializacion, precio, galeria, miniatura);
+        Fotografo fotografo = new Fotografo(nombre, apellido, mail, contrasenia, telefono,especializacion, precio, galeria, miniatura);
         
         return fr.save(fotografo);
     }
