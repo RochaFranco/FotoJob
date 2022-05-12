@@ -5,17 +5,19 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
 public class ClienteServicio {
     
+    @Autowired
     private clienteRepositorio cr;
     
     @Transactional
-    private Cliente save(String nombre, String apellido, String mail, Integer telefono) throws Exception{
+    public Cliente save(String nombre, String apellido, String mail, Integer telefono) throws Exception{
         
-        validator(nombre, apellido, mail, telefono);
+       validator(nombre, apellido, mail, telefono);
         
         Cliente cliente = new Cliente(nombre, apellido, mail, telefono);
         
