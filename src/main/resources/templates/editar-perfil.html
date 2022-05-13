@@ -10,7 +10,7 @@
 </head>
 <body class="cuerpo">
   <div class="container">
-    <form th:action="@{/editar/{id}" method="POST">
+    <form th:action="@{/fotografo/editar/__${fotografo.id}__" method="POST">
       <div class="row g-3">
         <div class="col">
           <label for="inputNombre" class="form-label">Nombre</label>

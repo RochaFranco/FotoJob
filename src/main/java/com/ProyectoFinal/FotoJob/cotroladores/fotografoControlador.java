@@ -65,13 +65,7 @@ public class fotografoControlador {
         }
      
     }
-//    
-//    @GetMapping("/editar")
-//    public String editarPerfil(){
-//       return "editar-perfil";
-//    }
-    
-    
+
      @GetMapping("/editar/{id}")
     public String editarPerfil(ModelMap modelo, @PathVariable String id) throws Exception{
     modelo.addAttribute("modelo",id);
