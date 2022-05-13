@@ -17,12 +17,35 @@
   width: 100%;
 }
 
+.cuerpo{
+   background-color:  #B1E3F0;
+}
+#filtros_especial{
+    border-radius: 15px;
+}
+#filter_card{
+    font-weight: bold;
+    color: black;
+    background-color: #FFC107;
+    border-color: rgb(94, 94, 94);
+    border-width: 2px;
+}
+
+#filtros_precio{
+    border-radius: 15px;
+}
+
+.card{
+
+    border-radius: 15px;
+}
 .profile {
     display: flex;
     font-size: 2em;
     height: 5em;
     justify-content: center;
     align-items: center;
+   
 }
 
 .muestra {
@@ -35,7 +58,6 @@
     margin: 2rem;
     width: max-content;
     position: fixed;
-    
 }
 
 .list-group-item-action {

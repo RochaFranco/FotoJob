@@ -37,11 +37,12 @@
   width: 100%;
 }
 
-body {
+.cuerpo {
+   background-color:#B1E3F0;
 } 
 
 .cont-1 {
-    background-color: var(--blanco);
+    background-color:#B1E3F0 ;
     margin: 1rem 12%;
     display: flex;
     flex-direction: column;
@@ -53,7 +54,6 @@ body {
      letter-spacing: 1px;
      text-decoration: none;
      color: var(--blanco);
-     background-color: var(--color1);
      cursor: pointer;
      border-radius: 30px;
      border: 2px solid transparent;
@@ -62,7 +62,6 @@ body {
     
 }
 .cont-datos {
-    background-color: var(--blanco);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,36 +119,19 @@ body {
     
 }
 
-.btn-editar {
-     margin: 1rem 1rem;
-     padding: 15px 30px;
-     text-align: center;
-     font-size: 16px;
-     letter-spacing: 1px;
-     text-decoration: none;
-     color: var(--color1);
-     background: transparent;
-     cursor: pointer;
-     border-radius: 30px;
-     border: 2px solid var(--color1);
-     /*border-radius: 10px;*/
-     box-shadow: inset 0 0 0 0 grey;
-}
 
 .btn-contacto {
+  border-color: black;
+  background-color: #FFC107;
+  color: #0B0D0C;
      margin: 1rem 1rem;
      padding: 15px 30px;
      text-align: center;
      font-size: 16px;
      letter-spacing: 1px;
-     text-decoration: none;
-     color: var(--blanco);
-     background-color: var(--color1);
      cursor: pointer;
      border-radius: 30px;
-     border: 2px solid transparent;
-     /*border-radius: 10px;*/
-     box-shadow: inset 0 0 0 0 grey;
+     border: 2px solid black;
 }
 
 

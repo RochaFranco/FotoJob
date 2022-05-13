@@ -10,13 +10,12 @@
         <script src="https://kit.fontawesome.com/ce8bb5c939.js" crossorigin="anonymous"></script>
         <title>Perfil del fotografo</title>
     </head>
-    <body> 
+    <body class="cuerpo"> 
 
         <header>
             <nav class="sticky navbar">
-                <a href="#">#Logo#</a>
-                <a href="#">Inicio</a>
-                <a href="#">Perfil</a>
+                <a th:href="@{/}" class="bienvenida">#Logo#</a>
+                <a th:href="@{/fotografo/inicio}" class="inicio">Inicio</a>
             </nav>
         </header>
 
@@ -35,7 +34,7 @@
                         <h3>4,2</h3>
 
                     </div>
-                    <p>Ver comentarios</p>
+                   
                 </div>
 
                 <div class="cont-info">
