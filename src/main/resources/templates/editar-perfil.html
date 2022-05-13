@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleeaf.org">
+<html lang="en" xmlns:th="http://www.thymeleeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
 </head>
 <body class="cuerpo">
   <div class="container">
-    <form th:action="@{/editar}" method="POST">
+    <form th:action="@{/fotografo/editar/__${fotografo.id}__" method="POST">
       <div class="row g-3">
         <div class="col">
           <label for="inputNombre" class="form-label">Nombre</label>

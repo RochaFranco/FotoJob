@@ -1,7 +1,10 @@
 package com.ProyectoFinal.FotoJob.entidades;
 
+import enums.Role;
 import java.util.ArrayList;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
@@ -26,6 +29,8 @@ public class Fotografo {
     private String precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
     private ArrayList<String> galeria; // un array de Strings para guardar las fotos (cada string es una foto)
     private ArrayList<String> miniatura;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
     public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono,String especializacion, String precio, ArrayList<String> galeria, ArrayList<String> miniatura) {
         this.nombre = nombre;
@@ -150,6 +155,14 @@ public class Fotografo {
 
     public void setMiniatura(ArrayList<String> miniatura) {
         this.miniatura = miniatura;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 

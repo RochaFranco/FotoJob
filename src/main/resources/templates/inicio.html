@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="es" xmlns:th="http://www.thymeleeaf.org">
+
+<html lang="en" xmlns:th="http://www.thymeleeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +12,17 @@
     <link rel="stylesheet" href="/estilos/inicio.css">
     <title>Inicio</title>
 </head>
-<body>
+<body class="cuerpo">
+     <header>
+            <nav class="sticky navbar">
+                <a th:href="@{/}" class="bienvenida">#Logo#</a>
+                <a href="#">Mi Perfil</a>
+            </nav>
+        </header>
+    
     <div class="barra-acciones list-group">
+        <br>
+        <br>
         <h2>Categorias</h2>
         <div id="filtros_especial">
             <div id="filter_card" class=" list-group-item list-group-item-action active">Todos</div>
@@ -32,10 +45,15 @@
     </div>
     
     <div class="content">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       <div id="grid-container" class="grid-container">
-        
-        <div th:each="fotografo : ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
-            <a style="text-decoration: none; color: black" href="/fotografo/perfil_fotografo">
+       
+        <div th:each="fotografo: ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
+            <a style="text-decoration: none; color: black" th:href="@{/fotografo/perfil_fotografo/__${fotografo.id}__}">
           <div class="card-body">
               <div class="profile" >
                 <div th:text="${fotografo.nombre}"></div>

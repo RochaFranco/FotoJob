@@ -13,9 +13,9 @@ public class MailServicio {
     
     public void enviarMail(String destinatario,Integer telefono,String nombre, String apellido, String mail, String mensaje){
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo("RochaFrancoAgustin@gmail.com");
+        simpleMailMessage.setTo(destinatario);
         simpleMailMessage.setSubject("Pedido de cotizacion");
-        simpleMailMessage.setText("Telefono: "+telefono +" Nombre: "+ nombre +" Apellido: "+ apellido +" Mail: "+ mail +"\n\n\n\n"+" Mensaje: "+ mensaje);
+        simpleMailMessage.setText("Telefono: "+telefono +"\nNombre: "+ nombre +"\nApellido: "+ apellido +"\nMail: "+ mail +"\n\n\n\n"+"Mensaje: \n"+ mensaje);
 
         javaMailSender.send(simpleMailMessage);
     }
