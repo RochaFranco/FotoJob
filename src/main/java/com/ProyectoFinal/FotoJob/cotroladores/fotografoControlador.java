@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +19,30 @@ public class fotografoControlador {
     @Autowired
     private FotografoServicio fotografoServicio;
     
-    @GetMapping("/subir-foto")
-    public String subirFoto(){
-    
+    @GetMapping("/subir-foto/{id}")
+    public String subirFoto(ModelMap modelo, @PathVariable String id){
+        modelo.put("fotografo", fotografoServicio.findById(id));
         return "subir-foto";
-    
     }
     
+    @PostMapping("/subir-foto/{id}")
+    public String subirFoto(ModelMap modelo, @PathVariable String id, @RequestParam String imageUrl, @RequestParam String imageUrlMin){
+    
+       Fotografo f = fotografoServicio.findById(id);
+     
+            ArrayList<String> fotosGrandes = f.getGaleria();
+            ArrayList<String> fotosCortadas = f.getMiniatura();
+            fotosGrandes.add(imageUrl);
+            fotosCortadas.add(imageUrlMin);
+            f.setGaleria(fotosGrandes);
+            f.setGaleria(fotosCortadas);
+            modelo.put("fotografo", f);
+            return "perfil_fotografo";
+     
+            
+    
+    
+    }
       
     @GetMapping("/registrarse")
     public String registrar(){
@@ -47,10 +65,31 @@ public class fotografoControlador {
         }
      
     }
+//    
+//    @GetMapping("/editar")
+//    public String editarPerfil(){
+//       return "editar-perfil";
+//    }
     
-    @GetMapping("/editar")
-    public String editarPerfil(){
-       return "editar-perfil";
+    
+     @GetMapping("/editar/{id}")
+    public String editarPerfil(ModelMap modelo, @PathVariable String id) throws Exception{
+    modelo.addAttribute("modelo",id);
+    modelo.addAttribute("fotografo", fotografoServicio.findById(id));
+    return "editar-perfil";
+    }
+    
+    @PostMapping("/editar/{id}")
+    public String editarPerfil(ModelMap modelo, @PathVariable String id, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String mail,@RequestParam String contrasenia,@RequestParam Integer telefono, @RequestParam String especializacion, @RequestParam String precio) throws Exception{
+        try {
+            fotografoServicio.edit(id,nombre, apellido, mail, contrasenia, telefono,especializacion, precio);
+            return "redirect:/perfil_fotografo";
+        } catch (Exception e) {
+            modelo.addAttribute("fotografo", fotografoServicio.findById(id));
+            modelo.put("error", "hubo un error con los datos");
+            return "editar-perfil";
+        }
+    
     }
     
     @GetMapping("/inicio")
@@ -65,16 +104,18 @@ public class fotografoControlador {
         }
     }
     
-    @GetMapping("/perfil_fotografo")
-    public String mostrarPerfil(ModelMap modelo){
-        
-       try {
+    @GetMapping("/perfil_fotografo/{id}")
+    public String mostrarPerfil(ModelMap modelo, @PathVariable String id){
+      try {
+            Fotografo f = fotografoServicio.findById(id);
+            modelo.put("fotografo", f);
            
-       } catch ( Exception e) {
-      }
-       
-        return"perfil_fotografo";
+        }catch (Exception e){
+            modelo.put("Noperfil", e);
+            return "inicio";
+        }
+        return "perfil_fotografo";  
     }
-    
+
     
 }

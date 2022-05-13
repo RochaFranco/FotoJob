@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleeaf.org">
+<html lang="en" xmlns:th="http://www.thymeleeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,8 +34,8 @@
     <div class="content">
       <div id="grid-container" class="grid-container">
         
-        <div th:each="fotografo : ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
-            <a style="text-decoration: none; color: black" href="/fotografo/perfil_fotografo">
+        <div th:each="fotografo: ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
+            <a style="text-decoration: none; color: black" th:href="@{/fotografo/perfil_fotografo/__${fotografo.id}__}">
           <div class="card-body">
               <div class="profile" >
                 <div th:text="${fotografo.nombre}"></div>
