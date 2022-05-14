@@ -12,11 +12,17 @@
 <body class="cuerpo">
     <header>
         <nav class="sticky navbar">
-            <a th:href="@{/}" class="bienvenida">#Logo#</a>
+            <div class="d-flex align-items-center">
+                <a th:href="@{/}" class="bienvenida"><img class="logo" style="width: 50px" src="/imagenes/logoCorporativo.png" alt=""></a>
             <a th:href="@{/fotografo/inicio}" class="inicio">Inicio</a>
+            </div>
+            <div>
             <a href="#">Mi Perfil</a>
+            </div>
         </nav>
     </header>
+    <br>
+    <br>
     <br>
     <br>
     <div class="contenedor" >

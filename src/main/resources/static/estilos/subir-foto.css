@@ -257,5 +257,8 @@
         width: 200px;
         height: 200px;
         margin: auto;
-    }
+    } 
+}
+a:hover{
+    color: #0a58ca;
 }

@@ -83,3 +83,36 @@
     visibility: visible;
 }
 
+/*.CategoriasYellow.active{
+    z-index: 2;
+    color: #212529;
+    background-color: #fdcc0d;
+    border-color: #0d6efd;
+}*/
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #fdb60d;
+    border-color: #212529;
+}
+
+.logo{
+    width: 50px;
+
+}
+
+.Titulo{ display: flex;
+  align-items: center;
+  flex-direction: row;
+ 
+}
+
+.bienvenida{
+    display: flex;
+    align-items: center;
+}
+
+.miperfil:hover{
+    color:#FFC107;
+}
