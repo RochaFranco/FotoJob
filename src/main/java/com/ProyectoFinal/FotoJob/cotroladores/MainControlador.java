@@ -1,5 +1,4 @@
 package com.ProyectoFinal.FotoJob.cotroladores;
-
 import com.ProyectoFinal.FotoJob.servicios.ClienteServicio;
 import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
 import com.ProyectoFinal.FotoJob.servicios.MailServicio;
@@ -37,7 +36,8 @@ public class MainControlador {
     }
     
     @GetMapping("/inicio")
-    public String inicio(){
+    public String inicio(ModelMap modelo){
+        modelo.put("fotografos", fotografoServicio.findAll());
     return "inicio";
     }
     
@@ -66,7 +66,7 @@ public class MainControlador {
          clienteServicio.save(nombre, apellido, mail, telefono);
          mailServicio.enviarMail(destinatario ,telefono ,nombre, apellido, mail, mensaje);
          modelo.put("exito", "cotizacion exitosa");
-        return "formulario-cotizacion";
+        return "redirect:/inicio";
         
         } catch (Exception e) {
            modelo.put("error", e.getMessage());

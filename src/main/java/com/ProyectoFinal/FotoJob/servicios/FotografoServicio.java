@@ -40,16 +40,15 @@ public class FotografoServicio implements UserDetailsService{
     }
     
     @Transactional
-    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono,String especializacion,String precio) throws Exception {
+    public Fotografo edit(String id, String nombre, String apellido,Integer telefono,String especializacion,String precio) throws Exception {
+    
         Optional<Fotografo> respuesta = fr.findById(id);
         
         if(respuesta.isPresent()){
-            validator(nombre, apellido, mail, contrasenia, telefono, especializacion,precio);
+            validadorSin(nombre, apellido,telefono, especializacion,precio);
             Fotografo f = respuesta.get();
             f.setNombre(nombre);
             f.setApellido(apellido);
-            f.setMail(mail);
-            f.setContrasenia(contrasenia);
             f.setTelefono(telefono);
             f.setEspecializacion(especializacion);
             f.setPrecio(precio);
@@ -82,6 +81,31 @@ public class FotografoServicio implements UserDetailsService{
     @Transactional
     public Fotografo findById(String id){
      return  fr.getById(id);
+    }
+    
+    public void validadorSin(String nombre, String apellido,Integer telefono, String especializacion,String precio) throws Exception{
+    
+    if(nombre == null || nombre.isEmpty()){
+            throw new Exception("Nombre invalido");
+        }
+        
+        if(apellido == null || apellido.isEmpty()){
+            throw new Exception("Apellido invalido");
+        }
+       
+        
+        if(telefono == null){
+            throw new Exception("Telefono invalido");
+        }
+        
+        if(especializacion == null || especializacion.isEmpty()){
+            throw new Exception("esecializacion invalida");
+        }
+        
+        if(precio == null || nombre.isEmpty()){
+            throw new Exception("precio invalido");
+        }
+    
     }
     
     public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio) throws Exception

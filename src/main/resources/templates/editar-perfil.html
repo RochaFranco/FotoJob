@@ -10,36 +10,28 @@
 </head>
 <body class="cuerpo">
   <div class="container">
-    <form th:action="@{/fotografo/editar/__${fotografo.id}__" method="POST">
+    <form th:action="@{/fotografo/editar/__${fotografo.id}__}" method="POST">
       <div class="row g-3">
         <div class="col">
           <label for="inputNombre" class="form-label">Nombre</label>
-          <input id="inputNombre" type="text" class="form-control" placeholder="Nombre" name="nombre">
+          <input th:value="${fotografo.nombre}"  id="inputNombre" type="text" class="form-control" placeholder="Nombre" name="nombre">
         </div>
         <div class="col">
           <label for="inputApellido" class="form-label">Apellido</label>
-          <input id="inputApellido" type="text" class="form-control" placeholder="Apellido" name="apellido">
+          <input th:value="${fotografo.apellido}" id="inputApellido" type="text" class="form-control" placeholder="Apellido" name="apellido">
         </div>
       </div>
       <div class="mb-3">
         <label for="inputTelefono" class="form-label">Telefono</label>
-        <input id="inputTelefono" type="number" class="form-control" placeholder="(549)" name="telefono" >
-      </div>
-      <div class="mb-3">
-          <label for="inputMail" class="form-label">eMail</label>
-          <input id="inputMail" type="email" class="form-control" name="mail">
-      </div>
-      <div class="mb-3">
-          <label for="inputPass" class="form-label">Contraseña</label>
-          <input id="inputPass" type="password" class="form-control" name="contrasenia">
+        <input th:value="${fotografo.telefono}"  id="inputTelefono" type="number" class="form-control" placeholder="(549)" name="telefono" >
       </div>
       <div class="mb-3" id="Categorias">
-          <label for="inputEspecialidad" class="form-label" >Especialidad</label>
-          <select class="desplegables" id="inputEspecialidad" name="especializacion" ></select>
+          <label  for="inputEspecialidad" class="form-label" >Especialidad</label>
+          <select   class="desplegables" id="inputEspecialidad" name="especializacion" ></select>
       </div>
       <div class="mb-3" id="RangoPrecio">
         <label for="inputRangoPrecio" class="form-label" >Rango Precio</label>
-        <select class="desplegables" id="inputRangoPrecio" name="precio" ></select>
+        <select  class="desplegables" id="inputRangoPrecio" name="precio" ></select>
       </div>
       <button type="submit" class="boton ">Guardar</button>
     </form>

@@ -74,10 +74,10 @@ public class fotografoControlador {
     }
     
     @PostMapping("/editar/{id}")
-    public String editarPerfil(ModelMap modelo, @PathVariable String id, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String mail,@RequestParam String contrasenia,@RequestParam Integer telefono, @RequestParam String especializacion, @RequestParam String precio) throws Exception{
+    public String editarPerfil(ModelMap modelo, @PathVariable String id, @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer telefono, @RequestParam String especializacion, @RequestParam String precio) throws Exception{
         try {
-            fotografoServicio.edit(id,nombre, apellido, mail, contrasenia, telefono,especializacion, precio);
-            return "redirect:/perfil_fotografo";
+            fotografoServicio.edit(id,nombre, apellido,telefono,especializacion, precio);
+            return "redirect:/inicio";
         } catch (Exception e) {
             modelo.addAttribute("fotografo", fotografoServicio.findById(id));
             modelo.put("error", "hubo un error con los datos");
