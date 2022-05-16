@@ -1,4 +1,5 @@
 
+
 let cat = ["eventos", "moda", "foto-producto", "books" , "boudoir", "pets"]
 let opcionesEsp = document.getElementById("inputEspecialidad")
 let rango = ["barato","medio","caro"]

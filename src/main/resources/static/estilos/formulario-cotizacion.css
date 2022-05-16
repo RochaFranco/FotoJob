@@ -1,3 +1,29 @@
+
+.navbar {
+    overflow: hidden;
+    background-color:#FFC107;
+  }
+  .navbar a {
+    float: left;
+    display: block;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px;
+    text-decoration: none;
+  }
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+.box{
+    height: 10em;
+   width: 500px;
+    border-radius: 10px;
+}
+
 .cuerpo{
 background-color: #38393c;
 
@@ -32,3 +58,4 @@ border-radius:50px;
 
     border-radius: 25px;
 }
+

@@ -1,8 +1,4 @@
-
-
-
 package com.ProyectoFinal.FotoJob.repositorios;
-
 import com.ProyectoFinal.FotoJob.entidades.Fotografo;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +12,19 @@ public interface fotografoRepositorio extends JpaRepository <Fotografo, String>{
     
    
      
+<<<<<<< HEAD
      @Query("SELECT f FROM Fotografo f WHERE f.especializacion= :especializacion")
      public List <Fotografo> buscarPorEspecializacion(@Param("especializacion") String especializacion);
+=======
+
+    @Query("SELECT f FROM Fotografo f WHERE f.especializacion= :especializacion")
+    public List <Fotografo> buscarPorEspecializacion(@Param("especializacion") String especializacion);
+
+
+     @Query("SELECT mail FROM Fotografo f WHERE f.id= :id")
+     public String traerMailPorId(@Param("id") String id);
+     
+     @Query("SELECT f FROM Fotografo f WHERE f.mail= :mail") 
+     public Fotografo findByEmail(@Param("mail") String email);
+>>>>>>> 02d7a4920804781a8c7bf08c7cd3e4cdc37663c8
 }

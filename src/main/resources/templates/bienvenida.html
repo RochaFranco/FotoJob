@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleeaf.org">
+=======
+<html lang="en" xmlns:th="http://www.thymeleeaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>>>>>>> 02d7a4920804781a8c7bf08c7cd3e4cdc37663c8
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,14 +19,22 @@
     <div class="contenedor">
         <div class="inicio-sesion left card">
             <form th:action="@{/fotografo/registrarse}" class="inicio-sesion" >
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-warning btn-cliente">Registrate</button>
             </form>
             <form th:action="iniciarSesion" class="inicio-sesion" method="POST">
                 <button type="submit" class="btn btn-warning btn-cliente">Entrar como Invitado</button>
+=======
+                <button type="submit" class="btn btn-warning btn-cliente">registrarme como fotografo</button>
+            </form>
+            <form th:action="@{/fotografo/inicio}" class="inicio" >
+                <button  type="submit" class="btn btn-warning btn-cliente">Ver fotografos</button>
+>>>>>>> 02d7a4920804781a8c7bf08c7cd3e4cdc37663c8
             </form>
         </div>
         <div class="inicio-sesion card">
             <h1>Iniciar Sesion</h1>
+<<<<<<< HEAD
             <form th:action="entrar" class="inicio-sesion" method="POST">
                 <label for="inputMail">eMail</label>
                 <input type="text" id="inputMail"><br>
@@ -31,6 +43,27 @@
                 <button type="submit" class="btn btn-warning btn-cliente">Entrar</button>
             </form>
         </div>
+=======
+            <form th:action="@{/logincheck}" class="inicio-sesion" method="POST">
+                <label for="inputMail">eMail</label>
+                <input type="text" id="inputMail" name="mail"><br>
+                <label for="inputContr">Contraseña</label>
+                <input type="password" id="inputContr" name="password"><br>
+                <button type="submit" class="btn btn-warning btn-cliente">Entrar</button>
+            </form>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Error</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+        <div th:if="${logout}!=null" class="card text-white bg-success mb-3" >
+            <div class="card-body">
+                <p class="card-text" th:text="${logout}"></p>
+            </div>
+        </div>
+>>>>>>> 02d7a4920804781a8c7bf08c7cd3e4cdc37663c8
     </div>
 
 

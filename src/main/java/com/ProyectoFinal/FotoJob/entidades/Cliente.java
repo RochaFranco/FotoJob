@@ -1,5 +1,8 @@
 package com.ProyectoFinal.FotoJob.entidades;
+import enums.Role;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,6 +21,9 @@ public class Cliente {
     private String apellido;
     private String mail;
     private Integer telefono;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Cliente(String nombre, String apellido, String mail, Integer telefono) {
         this.nombre = nombre;
@@ -67,6 +73,14 @@ public class Cliente {
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
     
     
