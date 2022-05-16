@@ -29,10 +29,11 @@ public class Fotografo {
     private String precio; //corresponde a: 1 :$accesible 2: $$ moderado 3: $$$ caro
     private ArrayList<String> galeria; // un array de Strings para guardar las fotos (cada string es una foto)
     private ArrayList<String> miniatura;
-    
-
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+
+    
     
     public Fotografo(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion, String precio, ArrayList<String> galeria, ArrayList<String> miniatura) {
     

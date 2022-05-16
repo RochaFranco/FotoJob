@@ -10,6 +10,21 @@
     <title>Subir Foto</title>
 </head>
 <body class="cuerpo">
+    <header>
+        <nav class="sticky navbar">
+            <div class="d-flex align-items-center">
+                <a th:href="@{/}" class="bienvenida"><img class="logo" style="width: 50px" src="/imagenes/logoCorporativo.png" alt=""></a>
+            <a th:href="@{/fotografo/inicio}" class="inicio">Inicio</a>
+            </div>
+            <div>
+            <a href="#">Mi Perfil</a>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="contenedor" >
         <div class="subida" >
             <form id="form-img">
@@ -30,9 +45,9 @@
             <!--Este sube la imagen al FireBase-->
             <button type="button" id="uploadbtn"  class="btn disabled">Subir Imagen</button>
             <!--Este llama al controlador que le agrega el link al array del fotografo | Va al controlador y entrega los dosm links como string, el de la foto y el de la miniatura--> 
-            <form th:action="guardarImagenes" method="POST">
-                <p id="imageurlFB" name="imageUrl" hidden></p>
-                <p id="imageurlFBmin" name="imageUrlMin" hidden></p>
+            <form th:action="@{/fotografo/subir-foto/__${fotografo.id}__}" method="POST">
+                <imput type="text" id="imageurlFB" name="imageUrl" hidden></imput>
+                <imput type="text" id="imageurlFBmin" name="imageUrlMin" hidden></imput>
                 <button type="submit" id="postbtn" class="postear hidden" >Postear</button>
             </form>
         </div>

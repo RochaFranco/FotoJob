@@ -19,13 +19,30 @@ public class fotografoControlador {
     @Autowired
     private FotografoServicio fotografoServicio;
     
-    @GetMapping("/subir-foto")
-    public String subirFoto(){
-    
+    @GetMapping("/subir-foto/{id}")
+    public String subirFoto(ModelMap modelo, @PathVariable String id){
+        modelo.put("fotografo", fotografoServicio.findById(id));
         return "subir-foto";
-    
     }
     
+    @PostMapping("/subir-foto/{id}")
+    public String subirFoto(ModelMap modelo, @PathVariable String id, @RequestParam String imageUrl, @RequestParam String imageUrlMin){
+    
+       Fotografo f = fotografoServicio.findById(id);
+     
+            ArrayList<String> fotosGrandes = f.getGaleria();
+            ArrayList<String> fotosCortadas = f.getMiniatura();
+            fotosGrandes.add(imageUrl);
+            fotosCortadas.add(imageUrlMin);
+            f.setGaleria(fotosGrandes);
+            f.setGaleria(fotosCortadas);
+            modelo.put("fotografo", f);
+            return "perfil_fotografo";
+     
+            
+    
+    
+    }
       
     @GetMapping("/registrarse")
     public String registrar(){
@@ -48,10 +65,25 @@ public class fotografoControlador {
         }
     
     }
+
+     @GetMapping("/editar/{id}")
+    public String editarPerfil(ModelMap modelo, @PathVariable String id) throws Exception{
+    modelo.addAttribute("modelo",id);
+    modelo.addAttribute("fotografo", fotografoServicio.findById(id));
+    return "editar-perfil";
+    }
     
-    @GetMapping("/editar")
-    public String editarPerfil(){
-       return "editar-perfil";
+    @PostMapping("/editar/{id}")
+    public String editarPerfil(ModelMap modelo, @PathVariable String id, @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer telefono, @RequestParam String especializacion, @RequestParam String precio) throws Exception{
+        try {
+            fotografoServicio.edit(id,nombre, apellido,telefono,especializacion, precio);
+            return "redirect:/inicio";
+        } catch (Exception e) {
+            modelo.addAttribute("fotografo", fotografoServicio.findById(id));
+            modelo.put("error", "hubo un error con los datos");
+            return "editar-perfil";
+        }
+    
     }
     
     @GetMapping("/inicio")
@@ -67,17 +99,17 @@ public class fotografoControlador {
     }
     
 
-    @GetMapping("/profile/{id}")
-    public String mostrarperfil(@PathVariable String id, ModelMap modelo){
-        try {
-            Fotografo f = fotografoServicio.getbyId(id);
+
+    @GetMapping("/perfil_fotografo/{id}")
+    public String mostrarPerfil(ModelMap modelo, @PathVariable String id){
+      try {
+            Fotografo f = fotografoServicio.findById(id);
             modelo.put("fotografo", f);
+           
         }catch (Exception e){
             modelo.put("Noperfil", e);
             return "inicio";
         }
         return "perfil_fotografo";  
     }
-    
 }
-

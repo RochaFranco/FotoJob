@@ -1,12 +1,12 @@
 package com.ProyectoFinal.FotoJob.cotroladores;
-
 import com.ProyectoFinal.FotoJob.servicios.ClienteServicio;
-//import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
+import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
 import com.ProyectoFinal.FotoJob.servicios.MailServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +22,9 @@ public class MainControlador {
             model.put("login", "Logeado con exito");
         }
         return "bienvenida";
+
     }
+    
     
     
     @GetMapping("/login")
@@ -34,11 +36,12 @@ public class MainControlador {
             model.put("logout", "Desconectado correctamente");
         }
         return "bienvenida";
-    
+    }
 
     
     @GetMapping("/inicio")
-    public String inicio(){
+    public String inicio(ModelMap modelo){
+        modelo.put("fotografos", fotografoServicio.findAll());
     return "inicio";
     }
     
@@ -46,35 +49,35 @@ public class MainControlador {
     
     @Autowired
     private MailServicio mailServicio;
-   // @Autowired
-   // private FotografoServicio fotografoServicio;
+    @Autowired
+    private FotografoServicio fotografoServicio;
     @Autowired 
     private ClienteServicio clienteServicio;
     
-     @GetMapping("/cotizar")
-    public String cotizar(){
-        //fotografoServicio.findById(id);
+     @GetMapping("/cotizar/{id}")
+    public String cotizar(ModelMap modelo,@PathVariable String id){
+         modelo.addAttribute("modelo",id);
+        modelo.addAttribute("fotografo", fotografoServicio.findById(id));
     return "formulario-cotizacion";
     }
     
-      @PostMapping("/cotizar")
-    public String guardarDatosYEnviarMail(ModelMap modelo, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String mail, @RequestParam Integer telefono,@RequestParam String mensaje) throws Exception{
-       // destinatario = "rochafrancoagustin@hotmail.com";
-        //destinatario = this.fotografoServicio.traerMailPorId(id);
+    @PostMapping("/cotizar/{id}")
+    public String guardarDatosYEnviarMail(ModelMap modelo, @PathVariable String id,@RequestParam String destinatario, @RequestParam String nombre,@RequestParam String apellido, @RequestParam String mail, @RequestParam Integer telefono,@RequestParam String mensaje) throws Exception{
+        // destinatario = "rochafrancoagustin@hotmail.com";
+        destinatario = this.fotografoServicio.traerMailPorId(id);
        
         try {
          clienteServicio.save(nombre, apellido, mail, telefono);
-         mailServicio.enviarMail( "RochaFrancoAgustin@gmail.com" ,telefono ,nombre, apellido, mail, mensaje);
+         mailServicio.enviarMail(destinatario ,telefono ,nombre, apellido, mail, mensaje);
          modelo.put("exito", "cotizacion exitosa");
-        return "formulario-cotizacion";
+        return "redirect:/inicio";
         
         } catch (Exception e) {
            modelo.put("error", e.getMessage());
            return "formulario-cotizacion";
         }
-     
     }
-    
-    
-    
 }
+    
+    
+

@@ -28,7 +28,7 @@ public class FotografoServicio implements UserDetailsService{
     
     @Transactional
     public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
-        
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         validator(nombre, apellido, mail, contrasenia, telefono, especializacion, precio);
         
@@ -37,15 +37,22 @@ public class FotografoServicio implements UserDetailsService{
         fotografo.setRole(Role.FOTOGRAFO);
 
         return fr.save(fotografo);
+        
     }
     
     @Transactional
-    public Fotografo edit(String id, String nombre, String apellido, String mail, String contrasenia, Integer telefono, Integer valoraciones, String especializacion,String precio,ArrayList<String> galeria, ArrayList<String> miniatura) throws Exception {
+    public Fotografo edit(String id, String nombre, String apellido,Integer telefono,String especializacion,String precio) throws Exception {
+    
         Optional<Fotografo> respuesta = fr.findById(id);
         
         if(respuesta.isPresent()){
-            validator(nombre, apellido, mail, contrasenia, telefono, especializacion,precio);
+            validadorSin(nombre, apellido,telefono, especializacion,precio);
             Fotografo f = respuesta.get();
+            f.setNombre(nombre);
+            f.setApellido(apellido);
+            f.setTelefono(telefono);
+            f.setEspecializacion(especializacion);
+            f.setPrecio(precio);
             
             return fr.save(f);       
         }
@@ -53,14 +60,15 @@ public class FotografoServicio implements UserDetailsService{
             return null;
         }
         
-         }
+    }
+ 
     
     public List<Fotografo>findAll()
     {
          return fr.findAll();
     }
        
-       @Transactional
+    @Transactional
     public void delete(String id){
         fr.deleteById(id);
     }
@@ -72,8 +80,33 @@ public class FotografoServicio implements UserDetailsService{
     }
     
     @Transactional
-    public void findById(String id){
-    fr.findById(id);
+    public Fotografo findById(String id){
+     return  fr.getById(id);
+    }
+    
+    public void validadorSin(String nombre, String apellido,Integer telefono, String especializacion,String precio) throws Exception{
+    
+        if(nombre == null || nombre.isEmpty()){
+            throw new Exception("Nombre invalido");
+        }
+        
+        if(apellido == null || apellido.isEmpty()){
+            throw new Exception("Apellido invalido");
+        }
+       
+        
+        if(telefono == null){
+            throw new Exception("Telefono invalido");
+        }
+        
+        if(especializacion == null || especializacion.isEmpty()){
+            throw new Exception("esecializacion invalida");
+        }
+        
+        if(precio == null || nombre.isEmpty()){
+            throw new Exception("precio invalido");
+        }
+    
     }
     
     public void validator(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio) throws Exception
@@ -107,21 +140,10 @@ public class FotografoServicio implements UserDetailsService{
         }
 
     }
-    
-    
-    public Fotografo getbyId(String id) {
-        Fotografo f; 
-        try {
-            f = fr.getById(id);
-        } catch (Exception e) {
-            throw e;
-        }
-        return f;
-    }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Fotografo usuario = fr.findByEmail(email);
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        Fotografo usuario = fr.findByEmail(mail);
         if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
 
@@ -139,7 +161,20 @@ public class FotografoServicio implements UserDetailsService{
         } else {
             return null;
         }
+        }
+    
+    
+    public Fotografo getbyId(String id) {
+        Fotografo f; 
+        try {
+            f = fr.getById(id);
+        } catch (Exception e) {
+            throw e;
+        }
+        return f;
     }
+
+    
 
     
     
