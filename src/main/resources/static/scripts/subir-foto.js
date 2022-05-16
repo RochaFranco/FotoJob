@@ -115,7 +115,7 @@ async function uploadProcess() {
     },
     ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            imageurlFB.outerHTML = `<imput type="text" id="imageurlFB" value="${downloadURL}" name="imageUrl"></imput>`;
+            imageurlFB.outerHTML = `<input type="text" id="imageurlFB" value="${downloadURL}" name="imageUrl"></input>`;
             // =============
             let image = document.getElementById('img-cropper')
             let input = document.getElementById('fichero')
@@ -215,7 +215,7 @@ cut.addEventListener("click", ()=>{
         },
         ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                imageurlFBmin.outerHTML = `<imput type="text" id="imageurlFBmin" value="${downloadURL}" name="imageUrlMin"></imput>`;
+                imageurlFBmin.outerHTML = `<input type="text" id="imageurlFBmin" value="${downloadURL}" name="imageUrlMin"></input>`;
                 
             })
             

@@ -46,8 +46,8 @@
             <button type="button" id="uploadbtn"  class="btn disabled">Subir Imagen</button>
             <!--Este llama al controlador que le agrega el link al array del fotografo | Va al controlador y entrega los dosm links como string, el de la foto y el de la miniatura--> 
             <form th:action="@{/fotografo/subir-foto/__${fotografo.id}__}" method="POST">
-                <imput type="text" id="imageurlFB" name="imageUrl" hidden></imput>
-                <imput type="text" id="imageurlFBmin" name="imageUrlMin" hidden></imput>
+                <input type="text" id="imageurlFB" name="imageUrl" hidden></input>
+                <input type="text" id="imageurlFBmin" name="imageUrlMin" hidden></input>
                 <button type="submit" id="postbtn" class="postear hidden" >Postear</button>
             </form>
         </div>

@@ -1,6 +1,8 @@
 package com.ProyectoFinal.FotoJob.cotroladores;
 
+import com.ProyectoFinal.FotoJob.entidades.Foto;
 import com.ProyectoFinal.FotoJob.entidades.Fotografo;
+import com.ProyectoFinal.FotoJob.servicios.FotoServicio;
 import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class fotografoControlador {
     
     @Autowired
     private FotografoServicio fotografoServicio;
+    @Autowired
+    private FotoServicio fotoServicio;
     
     @GetMapping("/subir-foto/{id}")
     public String subirFoto(ModelMap modelo, @PathVariable String id){
@@ -27,26 +31,23 @@ public class fotografoControlador {
     
     @PostMapping("/subir-foto/{id}")
     public String subirFoto(ModelMap modelo, @PathVariable String id, @RequestParam String imageUrl, @RequestParam String imageUrlMin){
-    
-       Fotografo f = fotografoServicio.findById(id);
-     
-            ArrayList<String> fotosGrandes = f.getGaleria();
-            ArrayList<String> fotosCortadas = f.getMiniatura();
-            fotosGrandes.add(imageUrl);
-            fotosCortadas.add(imageUrlMin);
-            f.setGaleria(fotosGrandes);
-            f.setGaleria(fotosCortadas);
+        try {
+            Fotografo f = fotografoServicio.findById(id);
+            fotoServicio.save(new Foto(imageUrl, imageUrlMin, f));
+            ArrayList<Foto> fotos = fotoServicio.getFotosByID(id);
             modelo.put("fotografo", f);
-            return "perfil_fotografo";
-     
+            modelo.put("fotos", fotos);
+        } catch (Exception e) {
+            modelo.put("error",e.getMessage());
+            return "redirect:/fotografo/perfil_fotografo/{id}";
+        }
+        return "redirect:/fotografo/perfil_fotografo/{id}";
             
-    
-    
     }
       
     @GetMapping("/registrarse")
     public String registrar(){
-    return "registro-fotografo";
+        return "registro-fotografo";
     }
     
   
@@ -105,6 +106,7 @@ public class fotografoControlador {
       try {
             Fotografo f = fotografoServicio.findById(id);
             modelo.put("fotografo", f);
+            modelo.put("fotos", fotoServicio.getFotosByID(id));
            
         }catch (Exception e){
             modelo.put("Noperfil", e);
