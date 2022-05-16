@@ -23,13 +23,7 @@
 #filtros_especial{
     border-radius: 15px;
 }
-#filter_card{
-    font-weight: bold;
-    color: black;
-    background-color: #FFC107;
-    border-color: rgb(94, 94, 94);
-    border-width: 2px;
-}
+
 
 #filtros_precio{
     border-radius: 15px;
@@ -54,6 +48,7 @@
 }
 
 .barra-acciones {
+   
     display: flex;
     margin: 2rem;
     width: max-content;
@@ -66,8 +61,9 @@
 
 
 .grid-container {
+    margin-top: 70px;
     width: fit-content;
-    margin-left: 250px ;
+    margin-left: 110px ;
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 70px;

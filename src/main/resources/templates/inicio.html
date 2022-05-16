@@ -21,8 +21,6 @@
         </header>
     
     <div class="barra-acciones list-group">
-        <br>
-        <br>
         <h2>Categorias</h2>
         <div id="filtros_especial">
             <div id="filter_card" class=" list-group-item list-group-item-action active">Todos</div>
@@ -48,11 +46,6 @@
 
         <div class="alert alert-success w-25 d-flex justify-content-center" th:if="${exito != null}" th:text="${exito}" role="alert"></div>
         <div id="grid-container" class="grid-container">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <div id="grid-container" class="grid-container">
 
                 <div th:each="fotografo: ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">

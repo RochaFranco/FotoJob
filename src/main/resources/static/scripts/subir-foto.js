@@ -115,7 +115,7 @@ async function uploadProcess() {
     },
     ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-            imageurlFB.outerHTML = `<input type="text" id="imageurlFB" value="${downloadURL}" name="imageUrl"></input>`;
+            imageurlFB.outerHTML = `<input type="text" id="imageurlFB" value="${downloadURL}" name="imageUrl" hidden></input>`;
             // =============
             let image = document.getElementById('img-cropper')
             let input = document.getElementById('fichero')
@@ -151,7 +151,7 @@ async function uploadProcess() {
 
                 modalW.className = 'modal active';
                 modalC.className = 'modal-content active'
-                postbtn.className = "btn btn-success";
+                
 
             }
             // =============
@@ -215,8 +215,8 @@ cut.addEventListener("click", ()=>{
         },
         ()=>{
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                imageurlFBmin.outerHTML = `<input type="text" id="imageurlFBmin" value="${downloadURL}" name="imageUrlMin"></input>`;
-                
+                imageurlFBmin.outerHTML = `<input type="text" id="imageurlFBmin" value="${downloadURL}" name="imageUrlMin" hidden></input>`;
+                postbtn.className = "btn btn-success";
             })
             
         })
@@ -236,3 +236,4 @@ cut.addEventListener("click", ()=>{
 
 
 uploadbtn.onclick = uploadProcess;
+
