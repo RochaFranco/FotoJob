@@ -8,6 +8,7 @@
 
 
         <link rel="stylesheet" type="text/css" href="/estilos/perfil_fotografo.css">
+        <link rel="stylesheet" type="text/css" href="/estilos/lightbox.css">
 
         <script src="https://kit.fontawesome.com/ce8bb5c939.js" crossorigin="anonymous"></script>
         <title>Perfil del fotografo</title>
@@ -24,9 +25,7 @@
         <div class="cont-1"> 
 
             <div class="cont-datos">
-                <!-- <div class="cont-profilepic">
-                        <img src="https://www.w3schools.com/w3images/avatar6.png" class="avatar">
-                </div> -->
+
                 <div>
                     <h2 th:text="|${fotografo.nombre} ${fotografo.apellido}|"></h2>
                 </div>
@@ -70,10 +69,10 @@
 
             <div class="cont-galeria" id="galeria">
                 <div th:each="foto: ${fotos}" class="cont-img">
-                    <img th:src="${foto.linkMin}" class="img-galery">
+                    <a th:href="${foto.link}"  data-lightbox="galerialightbox"> 
+                        <img th:src="${foto.linkMin}" class="img-galery">
+                    </a>
                 </div>
-
-                <!-- 				Estos borrarlos cuando agrego thymeleaf-->
             </div>
 
             <section id="contenedor-principal">
@@ -85,43 +84,14 @@
                 </div>
             </section> 
 
-            <!-- Aca va la caja de comentarios --
-            <div class="cont-caja-coment">
-                <h4>Comentarios</h4>
-                <div class="cont-comentarios">
-
-                    <div class="cont-nuevo-comentario">
-                        <div class="nuevo-estrellas">
-                            <p class="1es"></p>
-                        </div>
-
-                        <form>
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Nombre</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre Apellido">
-                            </div>
-                            <div class="form-group">
-                                <label for="formGroupExampleInput2"></label>
-                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Escriba su comentario aqui...">
-                            </div>
-                        </form>
-
-                    </div>
-
-                    <div class="comentario">
-                        <div class="cont-estrellas">
-                            <span class="5e"></span>
-                        </div>
-                    </div>
-                </div>
-            </div> --->
 
         </div> 
 
         <footer>
         </footer> 
 
-        <script src="/scripts/perfil_fotografo_galeria.js"></script>
+        <!-- <script src="/scripts/perfil_fotografo_galeria.js"></script> -->
+        <script src="/scripts/lightbox-plus-jquery.min.js"></script>
 
 
     </body>
