@@ -35,14 +35,14 @@ public class fotografoControlador {
             Fotografo f = fotografoServicio.findById(id);
             fotoServicio.save(new Foto(imageUrl, imageUrlMin, f));
             ArrayList<Foto> fotos = fotoServicio.getFotosByID(id);
+            fotografoServicio.edit(id,f.getNombre(), f.getApellido(), f.getTelefono(), f.getEspecializacion(), f.getPrecio());
             modelo.put("fotografo", f);
             modelo.put("fotos", fotos);
         } catch (Exception e) {
             modelo.put("error",e.getMessage());
             return "redirect:/fotografo/perfil_fotografo/{id}";
         }
-        return "redirect:/fotografo/perfil_fotografo/{id}";
-            
+            return "redirect:/fotografo/perfil_fotografo/{id}";
     }
       
     @GetMapping("/registrarse")
@@ -50,7 +50,6 @@ public class fotografoControlador {
         return "registro-fotografo";
     }
     
-  
     @PostMapping("/registrarse")
     public String guardarRegistro(ModelMap modelo, @RequestParam String nombre,@RequestParam String apellido, @RequestParam Integer telefono, @RequestParam String mail, @RequestParam String contrasenia, @RequestParam String especializacion , @RequestParam String precio) throws Exception{
         ArrayList<String>galeria = new ArrayList();
@@ -85,18 +84,6 @@ public class fotografoControlador {
             return "editar-perfil";
         }
     
-    }
-    
-    @GetMapping("/inicio")
-    public String mostrarinicio(ModelMap modelo){
-        try {
-            ArrayList<Fotografo> fotografos = (ArrayList<Fotografo>) fotografoServicio.findAll();
-            modelo.put("fotografos", fotografos);
-            return "inicio";
-        } catch (Exception e) {
-            modelo.put("error", "Hubo un error al cargar los fotografos");
-            return "inicio";
-        }
     }
     
 

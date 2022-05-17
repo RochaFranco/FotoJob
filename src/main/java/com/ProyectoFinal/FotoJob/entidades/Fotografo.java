@@ -22,6 +22,9 @@ public class Fotografo {
     private String mail;
     private String contrasenia;
     private Integer telefono;
+    private String muestra1;
+    private String muestra2;
+    private String muestra3;
     //private Integer valoraciones;// atributo que da promedio de valoracion con estrellas
     //private String comentario;
     private String especializacion; // categoria de fotografia en la que se especializa
@@ -167,6 +170,30 @@ public class Fotografo {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getMuestra1() {
+        return muestra1;
+    }
+
+    public void setMuestra1(String muestra1) {
+        this.muestra1 = muestra1;
+    }
+
+    public String getMuestra2() {
+        return muestra2;
+    }
+
+    public void setMuestra2(String muestra2) {
+        this.muestra2 = muestra2;
+    }
+
+    public String getMuestra3() {
+        return muestra3;
+    }
+
+    public void setMuestra3(String muestra3) {
+        this.muestra3 = muestra3;
     }
 
 

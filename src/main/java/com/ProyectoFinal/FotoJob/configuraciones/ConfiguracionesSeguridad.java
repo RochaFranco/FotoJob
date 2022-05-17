@@ -30,17 +30,17 @@ public class ConfiguracionesSeguridad extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll()//cualquier usuario sin estar logueado //puede acceder a estos archivos
-                .and().formLogin()//configuramos el login                                                             
+            http.authorizeRequests().antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll()//cualquier usuario sin estar logueado //puede acceder a estos archivos
+                        .and().formLogin()//configuramos el login                                                             
                         .loginPage("/login") // Donde esta mi login
                         .loginProcessingUrl("/logincheck")//url que autentica un cliente
                         .usernameParameter("mail") // Con que nombre viajan los datos del logueo
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/fotografo/inicio/?login").permitAll() // A que URL ingresa si el usuario se autentica con exito
-                .and().logout() // Aca configuro la salida
+                        .defaultSuccessUrl("/inicio/?login").permitAll() // A que URL ingresa si el usuario se autentica con exito
+                        .and().logout() // Aca configuro la salida
                         .logoutUrl("/logout")//sprin security desloguea desde esta url
                         .logoutSuccessUrl("/login?logout").permitAll()//y nos redirige aca
-                .and().csrf().disable();
+                        .and().csrf().disable();
     }
     
 }

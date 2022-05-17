@@ -14,9 +14,12 @@
      <header>
             <nav class="sticky navbar">
                    <a th:href="@{/}" class="bienvenida"><img class="logo" src="/imagenes/logoCorporativo.png" alt="">FotoJob</a>
-                <a href="#"class="miperfil">Mi Perfil</a>
-                <a th:href="@{/login?logout}">LogOut</a>
-                
+                   <div th:if="${session.usuariosession} != null">
+                <a th:href="@{/fotografo/perfil_fotografo/__${session.usuariosession.id}__}"class="miperfil">Mi Perfil</a>
+                   </div>
+                   <div th:if="${session.usuariosession} != null">
+                <a th:href="@{/logout}">Cerrar sesion</a>
+                   </div>
             </nav>
         </header>
     
@@ -45,7 +48,7 @@
     <div class="content">
 
         <div class="alert alert-success w-25 d-flex justify-content-center" th:if="${exito != null}" th:text="${exito}" role="alert"></div>
-        <div id="grid-container" class="grid-container">
+        <div class="grid-container">
             <div id="grid-container" class="grid-container">
 
                 <div th:each="fotografo: ${fotografos}" class="card " th:classappend="|${fotografo.precio} ${fotografo.especializacion}|" style="width: 25rem;">
@@ -57,10 +60,10 @@
                               <div th:text="${fotografo.apellido}"></div>
                             </div>
                             <div class="muestra">
-                              <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2F0JTIwZXllfGVufDB8fDB8fA%3D%3D&w=1000&q=80" style="width: 7rem;" alt="trabajo del Fotografo">
-                              <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2F0JTIwZXllfGVufDB8fDB8fA%3D%3D&w=1000&q=80" style="width: 7rem;" alt="trabajo del Fotografo">
-                              <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2F0JTIwZXllfGVufDB8fDB8fA%3D%3D&w=1000&q=80" style="width: 7rem;" alt="trabajo del Fotografo">
-                            </div>
+                              <img th:src="${fotografo.muestra1}" style="width: 7rem;" alt="trabajo del Fotografo">
+                              <img th:src="${fotografo.muestra2}" style="width: 7rem;" alt="trabajo del Fotografo">
+                              <img th:src="${fotografo.muestra3}" style="width: 7rem;" alt="trabajo del Fotografo">
+                              </div>
                       </div>
                     </a>    
                 </div>

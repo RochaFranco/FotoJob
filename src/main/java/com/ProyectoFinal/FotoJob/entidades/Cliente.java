@@ -21,6 +21,7 @@ public class Cliente {
     private String apellido;
     private String mail;
     private Integer telefono;
+    private String contrasenia;
     
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -30,6 +31,7 @@ public class Cliente {
         this.apellido = apellido;
         this.mail = mail;
         this.telefono = telefono;
+        this.contrasenia = "admin";
     }
 
     public Cliente() {
@@ -81,6 +83,14 @@ public class Cliente {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
     
     

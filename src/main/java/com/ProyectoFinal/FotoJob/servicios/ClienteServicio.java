@@ -1,6 +1,7 @@
 package com.ProyectoFinal.FotoJob.servicios;
 import com.ProyectoFinal.FotoJob.entidades.Cliente;
 import com.ProyectoFinal.FotoJob.repositorios.clienteRepositorio;
+import enums.Role;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class ClienteServicio {
        validator(nombre, apellido, mail, telefono);
         
         Cliente cliente = new Cliente(nombre, apellido, mail, telefono);
-        
+        cliente.setRole(Role.CLIENTE);
         return cr.save(cliente);   
     }
     

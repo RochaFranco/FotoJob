@@ -1,5 +1,8 @@
 package com.ProyectoFinal.FotoJob.servicios;
+import com.ProyectoFinal.FotoJob.entidades.Cliente;
+import com.ProyectoFinal.FotoJob.entidades.Foto;
 import com.ProyectoFinal.FotoJob.entidades.Fotografo;
+import com.ProyectoFinal.FotoJob.repositorios.clienteRepositorio;
 import com.ProyectoFinal.FotoJob.repositorios.fotografoRepositorio;
 import enums.Role;
 import java.util.ArrayList;
@@ -22,10 +25,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class FotografoServicio implements UserDetailsService{
-    
+    @Autowired
+    private FotoServicio fs;
     @Autowired
     private fotografoRepositorio fr;
-    
+    @Autowired
+    private clienteRepositorio cr;
     @Transactional
     public Fotografo save(String nombre, String apellido, String mail, String contrasenia, Integer telefono, String especializacion,String precio,ArrayList<String> galeria , ArrayList<String> miniatura) throws Exception{
 
@@ -53,7 +58,7 @@ public class FotografoServicio implements UserDetailsService{
             f.setTelefono(telefono);
             f.setEspecializacion(especializacion);
             f.setPrecio(precio);
-            
+            setearMuestras(id);
             return fr.save(f);       
         }
         else{
@@ -61,7 +66,15 @@ public class FotografoServicio implements UserDetailsService{
         }
         
     }
- 
+    @Transactional
+    public void setearMuestras(String id){
+      Fotografo f = fr.getById(id);
+      ArrayList<Foto>fotos = fs.getFotosByID(id);
+      f.setMuestra1(fotos.get(0).getLinkMin());
+      f.setMuestra2(fotos.get(1).getLinkMin());
+      f.setMuestra3(fotos.get(2).getLinkMin());
+    }
+    
     
     public List<Fotografo>findAll()
     {
@@ -143,26 +156,43 @@ public class FotografoServicio implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        Fotografo usuario = fr.findByEmail(mail);
-        if (usuario != null) {
+        
+        Fotografo usuariof = fr.findByEmail(mail);
+        if (usuariof == null) {
+             Cliente usuarioc = cr.findByMail(mail);
+                if(usuarioc != null){
+                     List<GrantedAuthority> permisos = new ArrayList<>();
+
+                     GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuarioc.getRole());//ROLE_ADMIN O ROLE_FOTOGRAFO o ROLE_CLIENTE
+                     permisos.add(p1);
+
+                     //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+                     ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+                     HttpSession session = attr.getRequest().getSession(true);
+                     session.setAttribute("usuariosession", usuarioc);
+
+                     User user = new User(usuarioc.getMail(), usuarioc.getContrasenia(), permisos);
+                        return user;
+                }
+        } else if (usuariof != null){
             List<GrantedAuthority> permisos = new ArrayList<>();
 
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRole());//ROLE_ADMIN O ROLE_FOTOGRAFO o ROLE_CLIENTE
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuariof.getRole());//ROLE_ADMIN O ROLE_FOTOGRAFO o ROLE_CLIENTE
             permisos.add(p1);
 
             //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute("usuariosession", usuario);
+            session.setAttribute("usuariosession", usuariof);
 
-            User user = new User(usuario.getMail(), usuario.getContrasenia(), permisos);
+            User user = new User(usuariof.getMail(), usuariof.getContrasenia(), permisos);
             return user;
-
-        } else {
-            return null;
+            
         }
-        }
-    
+                
+        
+        return null;
+    }
     
     public Fotografo getbyId(String id) {
         Fotografo f; 

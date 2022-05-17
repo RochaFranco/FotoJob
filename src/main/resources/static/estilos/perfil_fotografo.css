@@ -18,6 +18,7 @@
 
 
 .navbar {
+  justify-content: space-between;
   overflow: hidden;
   background-color: #333;
 }

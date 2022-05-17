@@ -1,7 +1,9 @@
 package com.ProyectoFinal.FotoJob.cotroladores;
+import com.ProyectoFinal.FotoJob.entidades.Fotografo;
 import com.ProyectoFinal.FotoJob.servicios.ClienteServicio;
 import com.ProyectoFinal.FotoJob.servicios.FotografoServicio;
 import com.ProyectoFinal.FotoJob.servicios.MailServicio;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,13 +40,17 @@ public class MainControlador {
         return "bienvenida";
     }
 
-    
-    @GetMapping("/inicio")
-    public String inicio(ModelMap modelo){
-        modelo.put("fotografos", fotografoServicio.findAll());
-    return "inicio";
+   @GetMapping("/inicio")
+    public String mostrarinicio(ModelMap modelo){
+        try {
+            ArrayList<Fotografo> fotografos = (ArrayList<Fotografo>) fotografoServicio.findAll();
+            modelo.put("fotografos", fotografos);
+            return "inicio";
+        } catch (Exception e) {
+            modelo.put("error", "Hubo un error al cargar los fotografos");
+            return "inicio";
+        }
     }
-    
     
     
     @Autowired

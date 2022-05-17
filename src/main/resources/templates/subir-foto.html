@@ -14,10 +14,10 @@
         <nav class="sticky navbar">
             <div class="d-flex align-items-center">
                 <a th:href="@{/}" class="bienvenida"><img class="logo" style="width: 50px" src="/imagenes/logoCorporativo.png" alt=""></a>
-            <a th:href="@{/fotografo/inicio}" class="inicio">Inicio</a>
+            <a th:href="@{/inicio}" class="inicio">Inicio</a>
             </div>
             <div>
-            <a href="#">Mi Perfil</a>
+            <a th:href="@{/fotografo/perfil_fotografo/__${session.usuariosession.id}__}">Mi Perfil</a>
             </div>
         </nav>
     </header>
